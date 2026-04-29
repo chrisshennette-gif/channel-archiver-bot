@@ -42,6 +42,8 @@ async def sort_archive_category(archive_category: discord.CategoryChannel):
 
 @tasks.loop(hours=24)
 async def archive_inactive_channels():
+    print(f"Running archive check at {datetime.now(timezone.utc)}")
+    
     cutoff = datetime.now(timezone.utc) - timedelta(days=ARCHIVE_AFTER_DAYS)
 
     for guild in bot.guilds:
